@@ -1,0 +1,22 @@
+# Журнал изменений (CHANGELOG)
+
+Формат основан на [Semantic Versioning](https://semver.org/lang/ru/).
+
+## [0.1.0] — 2025-10-15
+
+### Добавлено
+- Схема базы данных PostgreSQL + PostGIS (001_schema.sql):
+  - 4 справочные таблицы (districts, infrastructure_types, cargo_categories, data_sources)
+  - 3 таблицы объектов (infrastructure_objects, road_segments, cargo_routes)
+  - 2 таблицы статистики (freight_flow_stats, traffic_conditions)
+  - 1 таблица инцидентов (traffic_incidents)
+  - 1 таблица ETL-журнала (etl_log)
+  - 2 аналитических представления (v_district_summary, v_current_traffic)
+- Генератор синтетических данных (generate_data.py) с параметром SCALE
+- Набор тестовых данных SCALE=1 (002_seed_data_scale1.sql, 251 запись)
+- Файл README.md с описанием проекта и инструкцией развёртывания
+- Файл .gitignore для Python/IDE/OS
+
+### Известные ограничения
+- Геометрия округов (MULTIPOLYGON) не заполнена — только центры
+- Геометрия маршрутов упрощена (случайные точки, не привязаны к дорожной сети)
